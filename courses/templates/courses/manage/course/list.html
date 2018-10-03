@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}My courses{% endblock %}
+
+{% block content %}
+    <div class="container pt-5">
+        <h2 class="text-center">My courses</h2>
+        <div class="module">
+            {% for course in object_list %}
+                <div class="course-info">
+                    <h3>{{ course.title }}</h3>
+                    <p>
+                        <a class="btn btn-info" href="{% url "course_edit" course.id %}">Edit</a>
+                        <a class="btn btn-info" href="{% url "course_delete" course.id %}">Delete</a>
+                        <a class="btn btn-info" href="{% url "course_module_update" course.id %}">Edit modules</a>
+                    </p>
+                </div>
+            {% empty %}
+                <div class="empty-courses text-center">
+                    <h3 class="text-muted">You haven't created any courses yet.</h3>
+                </div>
+            {% endfor %}
+            <p class="{% if object_list %}{% else %}text-center{% endif %} mt-5">
+                <a href="{% url "course_create" %}" class="btn btn-outline-info ">Create new
+                    course</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

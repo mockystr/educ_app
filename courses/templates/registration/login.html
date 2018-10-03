@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="module-login">
+        <h2 class="text-center">Log-in</h2>
+        {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+        <div class="login-form">
+            <form action="{% url 'login' %}" method="post">
+                {{ form|bootstrap }}
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
