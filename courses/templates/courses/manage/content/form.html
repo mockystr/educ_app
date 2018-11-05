@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap %}
 {% block title %}
     {% if object %}
         Edit content "{{ object.title }}"
@@ -7,7 +8,7 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-    <h1>
+    <h1 class="text-center mt-5 mb-1">
         {% if object %}
             Edit content "{{ object.title }}"
         {% else %}
@@ -15,11 +16,13 @@
         {% endif %}
     </h1>
     <div class="module">
-        <h2>Course info</h2>
-        <form action="" method="post" enctype="multipart/form-data">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <p><input type="submit" value="Save content"></p>
-        </form>
+        <h2 class="text-center text-muted">Course info</h2>
+        <div class="" style="width: 100%;max-width: 700px; margin: 30px auto;">
+            <form action="" method="post" enctype="multipart/form-data">
+                {{ form|bootstrap }}
+                {% csrf_token %}
+                <p class="text-center"><input type="submit" class="btn btn-success" value="Save content"></p>
+            </form>
+        </div>
     </div>
 {% endblock %}

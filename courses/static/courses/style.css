@@ -4,9 +4,11 @@
 }
 
 header {
-    margin-top: 60px;
+    /*margin-top: 60px;*/
 }
-
+ul {
+    list-style: none;
+}
 .navbar-nav {
     margin-left: auto;
 }
