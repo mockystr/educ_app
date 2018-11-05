@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block title %}
+    Sign up
+{% endblock %}
+
+{% block content %}
+    <style>
+        form .help-block {
+            color: grey;
+        }
+
+        form ul {
+            color: grey;
+        }
+    </style>
+    <div class="container my-5" style="max-width: 500px; margin: 0 auto;">
+        <h1 class="text-center">Sign up</h1>
+        <div class="module">
+            <p>Enter your details to create an account:</p>
+            <form action="" method="post" style="">
+                {{ form|bootstrap }}
+                {% csrf_token %}
+                <p class="text-center"><input type="submit" class="btn btn-success" value="Create my account"></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
