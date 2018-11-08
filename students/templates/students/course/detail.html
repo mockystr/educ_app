@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load cache %}
 {% block title %}
     {{ object.title }}
 {% endblock %}
@@ -26,17 +27,14 @@
                 <h1>
                     {{ module.title }}
                 </h1>
-                {% for content in module.contents.all %}
-                    {% with item=content.item %}
-                        {% if content.content_type == "video" %}
+                {% cache 600 module_contents module %}
+                    {% for content in module.contents.all %}
+                        {% with item=content.item %}
+                            <h2>{{ item.title }}</h2>
                             {{ item.render }}
-                            <h2 style="color:red;">{{ item.title }}</h2>
-                        {% else %}
-                            <h2 style="">{{ item.title }}</h2>
-                            {{ item.render }}
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
+                        {% endwith %}
+                    {% endfor %}
+                {% endcache %}
             </div>
         </div>
     </div>
